@@ -41,4 +41,21 @@ class Seed_GroupController extends Controller
 
 
     }
+    public function get_seed_group_by_student_Id(Request $request){
+        $data = Seed_Groups::where('student_Id',$request->student_Id)->first();
+        if($data){
+            return response()->json([
+                "status" => true,
+                "data" => $data
+            ]);
+        }
+        else{
+            return response()->json([
+                "status" => false,
+                "massage" => 'Data not found'
+            ]);
+        }
+
+
+    }
 }

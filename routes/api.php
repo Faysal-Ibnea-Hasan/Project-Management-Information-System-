@@ -93,5 +93,6 @@ Route::controller(RequestController::class)->group(function () {
 Route::controller(Seed_GroupController::class)->group(function () {
     Route::post('/create_seed','create_seed_group');
     Route::post('/get_seed','get_seed_group');
+    Route::post('/get_seed_by_student_Id','get_seed_group_by_student_Id');
 
 });
