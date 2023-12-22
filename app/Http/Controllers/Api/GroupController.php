@@ -11,6 +11,7 @@ use App\Helpers\Helper;
 
 // Import Models
 use App\Models\Groups;
+use App\Models\Students;
 
 class GroupController extends Controller
 {
@@ -23,19 +24,17 @@ class GroupController extends Controller
 
         $data->name = $request->name ?? '';
         $data->group_Id = Helper::Generator(new Groups,'group_Id',4,'Group');
-        $data->member_1 = $request->member_1 ?? '';
-        $data->member_2 = $request->member_2 ?? '';
-        $data->member_3 = $request->member_3 ?? '';
 
         $data->save();
          return response()->json([
             'status' => true,
-            'massage' => 'Group was created successfully'
+            'massage' => 'Group was created successfully',
+            "group_Id" => $data->group_Id
          ]);
     }
     // ===============================================   Read   =======================================================================
     public function get_group(Request $request){
-        $data = Groups::where('id',$request->id)->first() ?? Groups::all();
+        $data = Groups::where('group_Id',$request->group_Id)->first() ?? Groups::all();
 
         return response()->json([
             'status' => true,
@@ -47,9 +46,6 @@ class GroupController extends Controller
         $data = Groups::where('id',$request->id)->first();
 
         $data->name = $request->name ?? $data->name;
-        $data->member_1 = $request->member_1 ?? $data->member_1;
-        $data->member_2 = $request->member_2 ?? $data->member_2;
-        $data->member_3 = $request->member_3 ?? $data->member_3;
 
         $data->save();
          return response()->json([

@@ -57,6 +57,14 @@ class StudentController extends Controller
             'data' => $data
         ]);
     }
+    public function get_student_by_student_Id(Request $request){
+        $data = Students::where('student_Id',$request->student_Id)->first() ?? Students::all();
+
+        return response()->json([
+            'status' => true,
+            'data' => $data
+        ]);
+    }
     // ===============================================   Update   ====================================================================
     public function update_student(Request $request){
         $data = Students::where('id',$request->id)->first();

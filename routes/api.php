@@ -11,6 +11,8 @@ use App\Http\Controllers\Api\GroupController;
 use App\Http\Controllers\Api\AttendanceController;
 use App\Http\Controllers\Api\AssignController;
 use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\RequestController;
+use App\Http\Controllers\Api\Seed_GroupController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +37,7 @@ Route::controller(AdminController::class)->group(function () {
 Route::controller(StudentController::class)->group(function () {
     Route::post('/student_create','create_student');
     Route::post('/student_get','get_student');
+    Route::post('/student_get_by_student_Id','get_student_by_student_Id');
     Route::post('/student_update','update_student');
     Route::delete('/student_delete','delete_student');
 });
@@ -57,7 +60,7 @@ Route::controller(GroupController::class)->group(function () {
     Route::post('/group_create','create_group');
     Route::post('/group_get','get_group');
     Route::post('/group_update','update_group');
-    Route::delete('/group_delete','delete_group');
+    Route::post('/group_delete','delete_group');
 });
 // =================================================== ATTENDANCE =================================================================
 Route::controller(AttendanceController::class)->group(function () {
@@ -76,5 +79,19 @@ Route::controller(AssignController::class)->group(function () {
 // =================================================== LOGIN =================================================================
 Route::controller(LoginController::class)->group(function () {
     Route::post('/user_login','login_user');
+
+});
+// =================================================== REQUEST =================================================================
+Route::controller(RequestController::class)->group(function () {
+    Route::post('/request_student','send_request');
+    Route::post('/accept_student','accept_request');
+    Route::post('/get_request','get_request');
+    Route::post('/reject_request','reject_request');
+
+});
+// =================================================== SEED_GROUP =================================================================
+Route::controller(Seed_GroupController::class)->group(function () {
+    Route::post('/create_seed','create_seed_group');
+    Route::post('/get_seed','get_seed_group');
 
 });

@@ -14,6 +14,8 @@ class Groups extends Model
     protected $table = 'tbl_groups';
 
     public function Students(){
-        return $this->belongTo(Students::class,['member_1','member_2','member_3'],'student_Id');
+        return $this->belongsTo(Students::class);
     }
+
+
 }

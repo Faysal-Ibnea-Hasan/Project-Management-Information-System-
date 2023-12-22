@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbl_groups', function (Blueprint $table) {
+        Schema::create('tbl_seed_groups', function (Blueprint $table) {
             $table->bigIncrements('id');
-            
-            $table->string('name');
             $table->string('group_Id');
-
+            $table->string('student_Id');
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbl_groups');
+        Schema::dropIfExists('tbl_seed_groups');
     }
 };
